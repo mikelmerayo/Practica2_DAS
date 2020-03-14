@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/ayuda"
+        android:title="@string/ayuda"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/monedero"
+        android:title="@string/monedero"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/ajustes"
+        android:title="@string/ajustes"
+        app:showAsAction="never" />
+
+</menu>
+
+
+
+

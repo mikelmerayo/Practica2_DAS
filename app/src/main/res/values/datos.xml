@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="colores">
+        <item>Básico</item>
+        <item>Rojo-Negro-Gris</item>
+        <item>Amarillo-Negro-Gris</item>
+    </string-array>
+
+    <string-array name="codigoscolores">
+        <item>bas</item>
+        <item>rng</item>
+        <item>ang</item>
+    </string-array>
+
+</resources>

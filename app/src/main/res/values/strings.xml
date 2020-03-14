@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Proyecto1</string>
+    <string name="cambiaridioma">Cambiar Idioma</string>
+    <string name="usuario">Usuario:</string>
+    <string name="contraseña">Contraseña:</string>
+    <string name="login">Iniciar Sesion</string>
+    <string name="registro">Registro</string>
+    <string name="videojuegosdisponibles">Ver Videojuegos Disponibles</string>
+    <string name="misvideojuegos">Mis Videojuegos</string>
+    <string name="listaV">Lista:</string>
+    <string name="dineroactual">Dinero actual:</string>
+    <string name="importeaingresar">Importe a ingresar:</string>
+    <string name="recargar">Recargar</string>
+    <string name="nomUsu">Usuario:</string>
+    <string name="password">Contraseña:</string>
+    <string name="edad">Edad:</string>
+    <string name="registrarse">Registrarse</string>
+    <string name="ayuda">Ayuda</string>
+    <string name="monedero">Monedero</string>
+    <string name="ajustes">Ajustes</string>
+    <string name="cerrarsesion">Cerrar sesion</string>
+    <string name="atras">Atrás</string>
+    <string name="miLista">Mis videojuegos:</string>
+    <string name="cambiarcolores">Cambiar Colores</string>
+</resources>

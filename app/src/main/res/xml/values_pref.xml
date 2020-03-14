@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="Colores de la aplicacion">
+
+        <ListPreference
+            android:dialogTitle="Combinación de colores"
+            android:entries="@array/colores"
+            android:entryValues="@array/codigoscolores"
+            android:key="colorpref"
+            android:summary="Elige tus colores"
+            android:title="¿Cuales son tus colores preferidos?" />
+
+    </PreferenceCategory>
+
+
+</PreferenceScreen>
