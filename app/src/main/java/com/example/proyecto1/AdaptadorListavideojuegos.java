@@ -31,7 +31,7 @@ public class AdaptadorListavideojuegos extends BaseAdapter { //Es la clase del a
     } //Numero de elementos de la lista
 
     @Override
-    public Object getItem(int position) { //Elemento en la posicion position
+    public Object getItem(int position) { //Elemento en la posicion: position
         return nombres[position];
     }
 
@@ -43,7 +43,7 @@ public class AdaptadorListavideojuegos extends BaseAdapter { //Es la clase del a
     @Override
     public View getView(int position, View view, ViewGroup viewGroup) { //Como se visualiza un elemento
 
-        view=inflater.inflate(R.layout.videojuego,null); //Se indica el xmlcon el layout para cada elemento
+        view=inflater.inflate(R.layout.videojuego,null); //Se indica el xml con el layout para cada elemento
 
         //Se recogen los elementos del layout en variables
         TextView nombre= (TextView) view.findViewById(R.id.nombreVid);
