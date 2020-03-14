@@ -4,6 +4,7 @@ package com.example.proyecto1;
 import androidx.preference.PreferenceFragmentCompat;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.Toast;
 
 
 public class Preferencias extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener{
@@ -17,8 +18,6 @@ public class Preferencias extends PreferenceFragmentCompat implements SharedPref
     public void onSharedPreferenceChanged(SharedPreferences prefs, String key){
         switch(key) {
             case "colorpref":
-
-
                 break;
 
             default:
