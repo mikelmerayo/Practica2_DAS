@@ -22,4 +22,7 @@
     <string name="atras">Atrás</string>
     <string name="miLista">Mis videojuegos:</string>
     <string name="cambiarcolores">Cambiar Colores</string>
+    <string name="cambiarFoto">Cambiar foto de perfil</string>
+    <string name="sacarFoto">Sacar Foto</string>
+
 </resources>

@@ -21,10 +21,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="122dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="60dp"
         android:text="@string/cambiarcolores"
+        app:layout_constraintEnd_toEndOf="@+id/cambiarFoto"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cambiaridioma" />
+
+    <Button
+        android:id="@+id/cambiarFoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="60dp"
+        android:text="@string/cambiarFoto"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cambiarcolores" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

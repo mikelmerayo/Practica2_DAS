@@ -22,4 +22,6 @@
     <string name="atras">Back</string>
     <string name="miLista">My videogames:</string>
     <string name="cambiarcolores">Change colours</string>
+    <string name="cambiarFoto">Change profile picture</string>
+    <string name="sacarFoto">Take a picture</string>
 </resources>

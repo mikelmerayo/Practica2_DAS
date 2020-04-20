@@ -1,18 +1,32 @@
 package com.example.proyecto1;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.preference.PreferenceManager;
+import androidx.work.Data;
+import androidx.work.OneTimeWorkRequest;
+import androidx.work.WorkInfo;
+import androidx.work.WorkManager;
 
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -27,6 +41,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.net.ssl.HttpsURLConnection;
+
 public class MainActivity extends AppCompatActivity {
 
     private static String usu;
@@ -35,6 +51,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //this.deleteDatabase("miBD");
+
+        ActivityManager am= (ActivityManager) this.getSystemService(Context.ACTIVITY_SERVICE);
+        if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.P) {
+            if(am.isBackgroundRestricted()==true){
+                Toast.makeText(getApplicationContext(), "Habilite el modo background de la aplicación si desea recibir mensajes FCM", Toast.LENGTH_LONG).show();
+            }
+        }
 
         //Al pulsar el boton login
         Button login = (Button) findViewById(R.id.login);
@@ -52,46 +76,67 @@ public class MainActivity extends AppCompatActivity {
 
                 //Comprobamos si ese usuario esta registrado en la base de datos
                 boolean validado = gestorDB.comprobarUsuario(usuario, contraseña);
-                if (validado) { //Si lo esta
-                    String idioma = gestorDB.consultarIdioma(usuario);//Consultamos su idioma preferente, por defecto, ingles
-                    //Asignamos el idioma castellano o ingles.
-                    if(idioma.equals("Castellano")){
-                        Locale nuevaloc = new Locale("es");
-                        Locale.setDefault(nuevaloc);
-                        Configuration config = new Configuration();
-                        config.locale = nuevaloc;
-                        getBaseContext().getResources().updateConfiguration(config,getBaseContext().getResources().getDisplayMetrics());
-                    }else if(idioma.equals("Ingles")){
-                        Locale nuevaloc = new Locale("en");
-                        Locale.setDefault(nuevaloc);
-                        Configuration config = new Configuration();
-                        config.locale = nuevaloc;
-                        getBaseContext().getResources().updateConfiguration(config,getBaseContext().getResources().getDisplayMetrics());
+                final String[] resul = {""};
+
+                Data datos = new Data.Builder()
+                        .putString("usuario", usuario)
+                        .putString("password", contraseña)
+                        .build();
+                OneTimeWorkRequest otwr = new OneTimeWorkRequest.Builder(comprobarUsuarioDBWebService.class).setInputData(datos).build();
+                WorkManager.getInstance(MainActivity.this).getWorkInfoByIdLiveData(otwr.getId()).observe(MainActivity.this, new Observer<WorkInfo>() {
+                    @Override
+                    public void onChanged(WorkInfo workInfo) {
+                        if (workInfo != null && workInfo.getState().isFinished()) {
+                            resul[0] = workInfo.getOutputData().getString("resultado");
+                            Log.i("resul", "" + resul[0]);
+                            this.logearUsuario();
+                        }
                     }
 
-                    //Escribimos en el fichero de logs (/data/data/com.example.proyecto1/files/logs.txt) que se ha logeado un usuario y la fecha de login
-                    try {
-                        OutputStreamWriter fichero = new OutputStreamWriter(openFileOutput("logs.txt", Context.MODE_APPEND));
+                    private void logearUsuario() {
+                        if (validado && resul[0].equals("existe")) { //Si lo esta
+                            String idioma = gestorDB.consultarIdioma(usuario);//Consultamos su idioma preferente, por defecto, ingles
+                            //Asignamos el idioma castellano o ingles.
+                            if(idioma.equals("Castellano")){
+                                Locale nuevaloc = new Locale("es");
+                                Locale.setDefault(nuevaloc);
+                                Configuration config = new Configuration();
+                                config.locale = nuevaloc;
+                                getBaseContext().getResources().updateConfiguration(config,getBaseContext().getResources().getDisplayMetrics());
+                            }else if(idioma.equals("Ingles")){
+                                Locale nuevaloc = new Locale("en");
+                                Locale.setDefault(nuevaloc);
+                                Configuration config = new Configuration();
+                                config.locale = nuevaloc;
+                                getBaseContext().getResources().updateConfiguration(config,getBaseContext().getResources().getDisplayMetrics());
+                            }
 
-                        //Se obtiene la fecha y la hora actual
-                        Date date = new Date();
-                        DateFormat hourdateFormat = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
+                            //Escribimos en el fichero de logs (/data/data/com.example.proyecto1/files/logs.txt) que se ha logeado un usuario y la fecha de login
+                            try {
+                                OutputStreamWriter fichero = new OutputStreamWriter(openFileOutput("logs.txt", Context.MODE_APPEND));
 
-                        fichero.write("Se ha logeado el usuario "+ usuario+ ". Hora y fecha: " + hourdateFormat.format(date) + '\n');
-                        fichero.close();
-                    } catch (IOException e){
-                        e.printStackTrace();
+                                //Se obtiene la fecha y la hora actual
+                                Date date = new Date();
+                                DateFormat hourdateFormat = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
+
+                                fichero.write("Se ha logeado el usuario "+ usuario+ ". Hora y fecha: " + hourdateFormat.format(date) + '\n');
+                                fichero.close();
+                            } catch (IOException e){
+                                e.printStackTrace();
+                            }
+
+                            //Accedemos al menu principal
+                            Intent i = new Intent(MainActivity.this, MenuPrincipal.class);
+                            setUsuario(usuario);
+                            startActivity(i);
+                            finish();
+
+                        } else { //En caso de que no este registrado ese usuario y contraseña, mensaje de error
+                            Toast.makeText(getApplicationContext(), "Usuario o contraseña incorrectos", Toast.LENGTH_LONG).show();
+                        }
                     }
-
-                    //Accedemos al menu principal
-                    Intent i = new Intent(MainActivity.this, MenuPrincipal.class);
-                    setUsuario(usuario);
-                    startActivity(i);
-                    finish();
-
-                } else { //En caso de que no este registrado ese usuario y contraseña, mensaje de error
-                    Toast.makeText(getApplicationContext(), "Usuario o contraseña incorrectos", Toast.LENGTH_LONG).show();
-                }
+                });
+                WorkManager.getInstance(MainActivity.this).enqueue(otwr);
             }
         });
 

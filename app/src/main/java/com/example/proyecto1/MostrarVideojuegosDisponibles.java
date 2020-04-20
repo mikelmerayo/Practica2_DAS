@@ -1,9 +1,15 @@
 package com.example.proyecto1;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.DialogFragment;
+import androidx.lifecycle.Observer;
 import androidx.preference.PreferenceManager;
+import androidx.work.Data;
+import androidx.work.OneTimeWorkRequest;
+import androidx.work.WorkInfo;
+import androidx.work.WorkManager;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -13,6 +19,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -20,7 +27,16 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.ProtocolException;
+
+import javax.net.ssl.HttpsURLConnection;
 
 
 public class MostrarVideojuegosDisponibles extends AppCompatActivity implements DialogoCompra.ListenerdelDialogo{
@@ -46,7 +62,7 @@ public class MostrarVideojuegosDisponibles extends AppCompatActivity implements 
 
         final miBD gestorDB = new miBD(getApplicationContext(), "miBD", null, 1);
 
-        //Se obtienen los nombres, imagenes y valoraciones de los videojuegos
+        //Se obtienen los nombres, configalmacen y valoraciones de los videojuegos
         String [] nombres = gestorDB.obtenerNombresVideojuegos();
         int[] imagenes = gestorDB.obtenerImagenesVideojuegos();
         double[] valoraciones = gestorDB.obtenerValoracionesVideojuegos();

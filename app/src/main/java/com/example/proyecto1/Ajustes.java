@@ -75,5 +75,16 @@ public class Ajustes extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+
+        Button cambiarFoto = (Button) findViewById(R.id.cambiarFoto);
+        cambiarFoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "Si pulsa en sacar foto se borrará automaticamente la foto actual", Toast.LENGTH_LONG).show();
+                Intent i = new Intent(Ajustes.this, CambiarFoto.class);
+                startActivity(i);
+            }
+        });
     }
 }
