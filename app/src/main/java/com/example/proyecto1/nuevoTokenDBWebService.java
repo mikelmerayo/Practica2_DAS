@@ -39,12 +39,7 @@ public class nuevoTokenDBWebService extends Worker {
         } catch (JSONException | IOException e) {
             e.printStackTrace();
         }
-        /*
-        Uri.Builder builder= new Uri.Builder().appendQueryParameter("usuario", usuario);
-        String parametros= builder.build().getEncodedQuery();
-        urlConnection.setRequestMethod("POST");
-            urlConnection.setDoOutput(true);
-        */
+
 
         int statusCode= 0;
         try {
@@ -59,7 +54,6 @@ public class nuevoTokenDBWebService extends Worker {
             e.printStackTrace();
         }
 
-        //Result.success() Result.failure() Result.retry()
         return Result.failure();
     }
 }
