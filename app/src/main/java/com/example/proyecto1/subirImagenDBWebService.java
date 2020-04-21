@@ -1,11 +1,6 @@
 package com.example.proyecto1;
 
-import android.content.ContentResolver;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.net.Uri;
-import android.provider.MediaStore;
-import android.util.Base64;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -14,13 +9,12 @@ import androidx.work.WorkerParameters;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.net.ssl.HttpsURLConnection;
 
+//Servicio para subir la foto de perfil de un usuario a la BD
 public class subirImagenDBWebService extends Worker {
 
     public subirImagenDBWebService(@NonNull Context context, @NonNull WorkerParameters workerParams) {

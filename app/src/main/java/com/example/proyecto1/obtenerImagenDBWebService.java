@@ -22,6 +22,7 @@ import java.io.PrintWriter;
 
 import javax.net.ssl.HttpsURLConnection;
 
+//Servicio para obtener la foto de perfil del usuario
 public class obtenerImagenDBWebService extends Worker {
     public obtenerImagenDBWebService(@NonNull Context context, @NonNull WorkerParameters workerParams) {
         super(context, workerParams);
@@ -46,12 +47,6 @@ public class obtenerImagenDBWebService extends Worker {
         } catch (JSONException | IOException e) {
             e.printStackTrace();
         }
-        /*
-        Uri.Builder builder= new Uri.Builder().appendQueryParameter("usuario", usuario);
-        String parametros= builder.build().getEncodedQuery();
-        urlConnection.setRequestMethod("POST");
-            urlConnection.setDoOutput(true);
-        */
 
         int statusCode = 0;
         Bitmap elBitmap=null;
@@ -59,7 +54,6 @@ public class obtenerImagenDBWebService extends Worker {
             statusCode = urlConnection.getResponseCode();
             Log.i("status: ", " " + statusCode);
             if (statusCode == 200) {
-                Log.i("resultado: ", "imagen bajada");
                 elBitmap= BitmapFactory.decodeStream(urlConnection.getInputStream());
                 if(elBitmap!=null){
                     ByteArrayOutputStream stream = new ByteArrayOutputStream();
@@ -84,7 +78,6 @@ public class obtenerImagenDBWebService extends Worker {
             e.printStackTrace();
         }
 
-        //Result.success() Result.failure() Result.retry()
         return Result.failure();
     }
 }

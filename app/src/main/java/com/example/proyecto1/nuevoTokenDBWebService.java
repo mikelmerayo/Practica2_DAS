@@ -15,6 +15,7 @@ import java.io.PrintWriter;
 
 import javax.net.ssl.HttpsURLConnection;
 
+//Servicio donde se registra un nuevo token para el usuario que se ha registrado
 public class nuevoTokenDBWebService extends Worker {
     public nuevoTokenDBWebService(@NonNull Context context, @NonNull WorkerParameters workerParams) {
         super(context, workerParams);

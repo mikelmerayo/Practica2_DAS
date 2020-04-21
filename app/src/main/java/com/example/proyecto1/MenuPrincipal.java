@@ -51,6 +51,7 @@ public class MenuPrincipal extends AppCompatActivity implements DialogoSesion.Li
         }
         setContentView(R.layout.activity_menu_principal);
 
+        //Se crea el anuncio que se va a mostrar al iniciar sesion
         MobileAds.initialize(this,"ca-app-pub-3940256099942544~3347511713");
         anuncio = new InterstitialAd(this);
         anuncio.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
@@ -61,12 +62,18 @@ public class MenuPrincipal extends AppCompatActivity implements DialogoSesion.Li
               public void onAdLoaded() {
                   anuncio.show();
               }
+
+            @Override
+            public void onAdClosed() {
+                anuncio=null;
+            }
         });
 
         //Asignamos la action bar personalizada
         Toolbar barra = findViewById(R.id.labarra);
         setSupportActionBar(barra);
 
+        //Ponemos la foto de perfil del usuario logeado en el image view
         String usuario = MainActivity.getUsuario();
         Data datos = new Data.Builder()
                 .putString("identificador", usuario)

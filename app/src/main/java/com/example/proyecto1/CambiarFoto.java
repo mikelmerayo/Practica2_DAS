@@ -11,8 +11,6 @@ import androidx.work.WorkRequest;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -22,7 +20,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
@@ -40,12 +37,16 @@ public class CambiarFoto extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cambiar_foto);
 
+
         File directorio=this.getFilesDir();
         Button sacarFoto = (Button) findViewById(R.id.sacarFoto);
+        //Al pulsar en cambiar foto
         sacarFoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Se llama al servicio que borra la foto actual
                 borrarImagenABD();
+                //Se crea la uri con la imagen sacada
                 String timeStamp= new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
                 String nombrefich= "IMG_" + timeStamp+ "_";
                 File fichImg= null;
@@ -68,6 +69,8 @@ public class CambiarFoto extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CODIGO_FOTO_ARCHIVO && resultCode == RESULT_OK) {
             ImageView perfil = (ImageView) findViewById(R.id.fotoPerfil);
+
+            //Se pone la foto sacada en el image view y se redimensiona para guardarla en la BD
             perfil.setImageURI(uriimagen);
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
             Bitmap bitmap = null;

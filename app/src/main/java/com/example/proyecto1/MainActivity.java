@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
                 miBD gestorDB = new miBD(getApplicationContext(), "miBD", null, 1);
 
                 //Comprobamos si ese usuario esta registrado en la base de datos
-                boolean validado = gestorDB.comprobarUsuario(usuario, contraseña);
+                boolean validado = gestorDB.comprobarUsuario(usuario, contraseña); //Esto mira en la BD local
                 final String[] resul = {""};
 
                 Data datos = new Data.Builder()

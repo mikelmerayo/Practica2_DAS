@@ -67,7 +67,6 @@ public class Registrarse extends AppCompatActivity {
                     public void onChanged(WorkInfo workInfo) {
                         if (workInfo != null && workInfo.getState().isFinished()) {
                             resul[0] = workInfo.getOutputData().getString("resultado");
-                            Log.i("resul", "" + resul[0]);
                             this.registrarUsuario();
                         }
                     }
@@ -93,8 +92,6 @@ public class Registrarse extends AppCompatActivity {
                                         public void onChanged(WorkInfo workInfo) {
                                             if (workInfo != null && workInfo.getState().isFinished()) {
 
-                                                Log.i("resultado: ", "registrado" );
-
                                             }
                                         }
                                     });
@@ -102,6 +99,7 @@ public class Registrarse extends AppCompatActivity {
 
                                     Toast.makeText(getApplicationContext(), "Se ha registrado correctamente", Toast.LENGTH_LONG).show();
 
+                                    //Se obtiene el token actual del dispositivo y se envia al servicio que lo guarda en la BD
                                     FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
                                         @Override
                                         public void onComplete(@NonNull Task<InstanceIdResult> task) {
@@ -111,7 +109,6 @@ public class Registrarse extends AppCompatActivity {
                                             }
 
                                             String tokenU = task.getResult().getToken();
-                                            Log.i("token: ", " " + tokenU);
                                             Data datos = new Data.Builder()
                                                     .putString("token", tokenU)
                                                     .build();

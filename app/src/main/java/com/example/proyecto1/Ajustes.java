@@ -76,7 +76,7 @@ public class Ajustes extends AppCompatActivity {
             }
         });
 
-
+        //Al pulsar cambiar foto se le llama a la actividad CambiarFoto donde el usuario podrá cambiar su foto de perfil
         Button cambiarFoto = (Button) findViewById(R.id.cambiarFoto);
         cambiarFoto.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -21,7 +21,6 @@ public class miBD extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE Usuarios('CodUsu' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 'NombreUsu' TEXT, 'Password' TEXT, 'Edad' INTEGER, 'Idioma' TEXT, 'Dinero'  DOUBLE)");
         db.execSQL("CREATE TABLE Videojuegos('CodVid' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 'NombreVid' TEXT, 'Imagen' INTEGER, 'Precio' DOUBLE, 'Valoracion' DOUBLE)");
         db.execSQL("CREATE TABLE Compras('CodCompra' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 'NombreUsu' TEXT, 'NombreVid' TEXT)");
-        //db.execSQL("CREATE TABLE imagenes( 'identificador' TEXT PRIMARY KEY not null, 'foto' blob not null)");
         db.execSQL("INSERT INTO Videojuegos ('NombreVid', 'Imagen', 'Precio', 'Valoracion') VALUES ('Fortnite', 'R.drawable.fortnite' , '35.0', '3.2')");
         db.execSQL("INSERT INTO Videojuegos ('NombreVid', 'Imagen', 'Precio', 'Valoracion') VALUES ('Minecraft', 'R.drawable.minecraft' , '23.0', '2.4')");
         db.execSQL("INSERT INTO Videojuegos ('NombreVid', 'Imagen', 'Precio', 'Valoracion') VALUES ('Fifa 20', 'R.drawable.fifa20' , '65.0', '4.6')");

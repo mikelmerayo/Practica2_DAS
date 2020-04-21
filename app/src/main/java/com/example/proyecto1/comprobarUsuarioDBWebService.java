@@ -1,31 +1,25 @@
 package com.example.proyecto1;
 
 import android.content.Context;
-import android.net.Uri;
 import android.util.Log;
-
 import androidx.annotation.NonNull;
 import androidx.work.Data;
 import androidx.work.Worker;
 import androidx.work.WorkerParameters;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URL;
+
 
 import javax.net.ssl.HttpsURLConnection;
 
+//Servicio donde se comprueba la existencia de un usuario con ese nombre y contraseña para acceder o no a la aplicación
 public class comprobarUsuarioDBWebService extends Worker {
     public comprobarUsuarioDBWebService(@NonNull Context context, @NonNull WorkerParameters workerParams) {
         super(context, workerParams);
@@ -52,12 +46,6 @@ public class comprobarUsuarioDBWebService extends Worker {
         } catch (JSONException | IOException e) {
             e.printStackTrace();
         }
-        /*
-        Uri.Builder builder= new Uri.Builder().appendQueryParameter("usuario", usuario);
-        String parametros= builder.build().getEncodedQuery();
-        urlConnection.setRequestMethod("POST");
-            urlConnection.setDoOutput(true);
-        */
 
         int statusCode= 0;
         String usuario2="";
@@ -98,6 +86,6 @@ public class comprobarUsuarioDBWebService extends Worker {
                 .putString("resultado", resultado)
                 .build();
         return Result.success(resultados);
-        //Result.success() Result.failure() Result.retry()
+
     }
 }
