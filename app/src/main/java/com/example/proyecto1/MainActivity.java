@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         //this.deleteDatabase("miBD");
 
+
         ActivityManager am= (ActivityManager) this.getSystemService(Context.ACTIVITY_SERVICE);
         if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.P) {
             if(am.isBackgroundRestricted()==true){
