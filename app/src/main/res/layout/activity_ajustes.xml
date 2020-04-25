@@ -12,7 +12,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="122dp"
         android:layout_marginTop="154dp"
+        android:layout_marginBottom="56dp"
         android:text="@string/cambiaridioma"
+        app:layout_constraintBottom_toTopOf="@+id/cambiarcolores"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,7 +24,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="122dp"
         android:layout_marginTop="56dp"
+        android:layout_marginBottom="67dp"
         android:text="@string/cambiarcolores"
+        app:layout_constraintBottom_toTopOf="@+id/cambiarFoto"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cambiaridioma" />
 

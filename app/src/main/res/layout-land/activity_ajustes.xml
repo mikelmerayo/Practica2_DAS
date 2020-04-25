@@ -10,36 +10,40 @@
         android:id="@+id/cambiaridioma"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="252dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginStart="290dp"
+
+        android:layout_marginTop="41dp"
+        android:layout_marginBottom="41dp"
         android:text="@string/cambiaridioma"
+        app:layout_constraintBottom_toTopOf="@+id/cambiarFoto"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/cambiarcolores" />
 
     <Button
         android:id="@+id/cambiarcolores"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="252dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginStart="290dp"
+
+        android:layout_marginTop="69dp"
+        android:layout_marginBottom="41dp"
         android:text="@string/cambiarcolores"
+        app:layout_constraintBottom_toTopOf="@+id/cambiaridioma"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cambiaridioma" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/cambiarFoto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="252dp"
-        android:layout_marginTop="66dp"
-        android:layout_marginEnd="285dp"
-        android:layout_marginBottom="311dp"
+        android:layout_marginStart="290dp"
+
+        android:layout_marginTop="41dp"
+        android:layout_marginBottom="116dp"
         android:text="@string/cambiarFoto"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cambiarcolores"
-        app:layout_constraintVertical_bias="0.112" />
+        app:layout_constraintTop_toBottomOf="@+id/cambiaridioma" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
