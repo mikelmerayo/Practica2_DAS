@@ -10,8 +10,8 @@
         android:id="@+id/cambiaridioma"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="122dp"
-        android:layout_marginTop="154dp"
+        android:layout_marginStart="252dp"
+        android:layout_marginTop="60dp"
         android:text="@string/cambiaridioma"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -20,8 +20,8 @@
         android:id="@+id/cambiarcolores"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="122dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginStart="252dp"
+        android:layout_marginTop="44dp"
         android:text="@string/cambiarcolores"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cambiaridioma" />
@@ -30,14 +30,16 @@
         android:id="@+id/cambiarFoto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="120dp"
+        android:layout_marginStart="252dp"
         android:layout_marginTop="66dp"
+        android:layout_marginEnd="285dp"
         android:layout_marginBottom="311dp"
         android:text="@string/cambiarFoto"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cambiarcolores"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.112" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
